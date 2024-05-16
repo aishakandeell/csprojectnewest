@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Ball.png</file>
+        <file>Breakout Game Logo.png</file>
+    </qresource>
+</RCC>
