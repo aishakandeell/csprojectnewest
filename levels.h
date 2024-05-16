@@ -4,6 +4,7 @@
 #include <QApplication>
 #include "ball.h"
 #include <QGraphicsScene>
+#include <QGraphicsTextItem>
 #include <QGraphicsView>
 #include <QTimer>
 #include <QGraphicsPixmapItem>
@@ -11,6 +12,7 @@
 #include "score.h"
 #include "health.h"
 #include "player.h"
+#include "ball.h"
 
 
 class levels:public QGraphicsView
@@ -24,7 +26,7 @@ public:
     void genblocks(int gen);
     void createbl();
     void hidecurrentscene();
-
+    ball *b;
 };
 
 #endif // LEVELS_H

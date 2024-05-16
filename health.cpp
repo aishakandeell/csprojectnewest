@@ -1,12 +1,14 @@
 #include "health.h"
 #include <QFont>
 #include <QMessageBox>
+#include <QPushButton>
 #include "game.h"
 #include "ball.h"
 #include "score.h"
 #include "levels.h"
 extern game * Game;
 extern levels*Levels;
+//extern int healthc=3;
 health::health(QGraphicsItem *parent): QGraphicsTextItem(parent){
 
     healthc=3;
@@ -16,20 +18,42 @@ health::health(QGraphicsItem *parent): QGraphicsTextItem(parent){
     setFont(QFont("times",14));
 
 }
+void health::healthreset(){
+    //healthc=3;
+    ball *Ball = new ball(":/Ball.png");
+    Ball->setPos(300, 500);
+    Levels->scene->addItem(Ball);
+}
 void health::decrease() {
+    qDebug() << "health decrease is called from funcdtion " ;
     qDebug() << "Current health: " << healthc;
     healthc--;
     qDebug() << "health after decrementing: " << healthc;
     setPlainText("Health: " + QString::number(healthc));
 
     if (healthc < 1) {
-        msg->setWindowTitle("You have no health left"); // Set the window title
-        msg->exec();
-        //game->scene->clear();
+        QMessageBox msgbox;//starrt
+        int playerscore=Levels->s->getscore();
+        QString messagee="Your score is "+QString::number(playerscore);
+        msgbox.setWindowTitle("You have no health left");
+        msgbox.setText(messagee);
+        //add button to go to level 1
+
+        QPushButton *nextlevelbutton = new QPushButton("Go To Level 1");
+        connect(nextlevelbutton, &QPushButton::clicked, this, game::level1);//level1 function
+        msgbox.addButton(nextlevelbutton, QMessageBox::AcceptRole);
+
+        QPushButton *exitbutton = new QPushButton("Exit Game");
+        connect(exitbutton, &QPushButton::clicked, this, game::exitgame);
+        msgbox.addButton(exitbutton, QMessageBox::RejectRole);
+
+
+        msgbox.exec();//end
+
     } else {
         // Create a new ball
         ball *Ball = new ball(":/Ball.png");
-        Ball->setPos(300, 700);
+        Ball->setPos(300, 500);
         Levels->scene->addItem(Ball);
     }
 
@@ -47,4 +71,7 @@ void health::decrease() {
 
 int health::gethealth(){
     return healthc;
+}
+void health::sethealth(int n){
+    healthc=n;
 }

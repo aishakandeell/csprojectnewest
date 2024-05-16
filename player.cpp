@@ -4,9 +4,9 @@
 #include <QBrush>
 #include <QGraphicsScene>
 #include <QKeyEvent>
+#include "game.h"
 
 player::player(QGraphicsItem *parent){
-    // draw rect
     setRect(0,0,100,10);
     QBrush brush(Qt::white);
     setBrush(brush);
@@ -27,7 +27,7 @@ void player::keyPressEvent(QKeyEvent *event)
     }
     else if(event->key()== Qt::Key_Right)
     {
-        if(x()+80<800)
+        if(x()+80<67 * 3 * currLevel)
             setPos(x()+10,y());
     }
 

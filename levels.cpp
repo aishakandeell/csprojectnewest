@@ -5,10 +5,13 @@
 #include "health.h"
 #include "blocks.h"
 #include <QScreen>
+#include <QPushButton>
+#include <QGraphicsTextItem>
+#include <QFont>
 #include "game.h"
 #include "ball.h"
 levels::levels(QWidget *parent) : QGraphicsView(parent) {
-    scene = new QGraphicsScene(0, 0, 67*3*currLevel, 800); // 600 horizontally, 800 vertically
+    scene = new QGraphicsScene(0, 0, 67*3*currLevel, 600); // 600 vertical
     scene->setBackgroundBrush(QBrush(Qt::black));
     setScene(scene);
 
@@ -26,18 +29,26 @@ void levels::hidecurrentscene() {
 void levels:: startlevel(){
     scene->clear();
 
-    scene->setSceneRect(0, 0, 67 * 3 * currLevel, 800);
+    scene->setSceneRect(0, 0, 67 * 3 * currLevel, 600);
     ball *b= new ball(":/Ball.png");
-    b->setPos((67*3*currLevel)/2,700);
+    b->setPos((67*3*currLevel)/2,500);
     scene->addItem(b);
     player *p= new player();
-    p->setPos((((67*3*currLevel)/2)-100)/2,775);
+    p->setPos((((67*3*currLevel)/2)-100)/2,575);
     scene->addItem(p);
     p->setFlag(QGraphicsItem::ItemIsFocusable);
     p->setFocus();
     h=new health();
-    h->setPos(h->x(),h->y()+25);
+    h->setPos(scene->width()-90, scene->height()-120);
     scene->addItem(h);
+    s=new score();
+    QGraphicsTextItem *levelll = new QGraphicsTextItem();
+    levelll->setPlainText("Level: " + QString::number(currLevel));
+    levelll->setDefaultTextColor(Qt::white);
+    levelll->setFont(QFont("times", 14));
+    levelll->setPos(scene->width()-90, scene->height()-70);
+    scene->addItem(levelll);
+
     createbl();
 }
 

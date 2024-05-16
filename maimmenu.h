@@ -22,6 +22,8 @@ private slots:
 
     void on_exitbutton_clicked();
 
+
+
 private:
     Ui::maimmenu *ui;
 };

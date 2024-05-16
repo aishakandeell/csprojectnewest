@@ -9,6 +9,7 @@ maimmenu::maimmenu(QWidget *parent)
     , ui(new Ui::maimmenu)
 {
     ui->setupUi(this);
+
 }
 
 maimmenu::~maimmenu()
@@ -29,3 +30,10 @@ void maimmenu::on_exitbutton_clicked()
 {
     this->~maimmenu();
 }
+
+
+
+
+
+
+

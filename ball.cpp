@@ -18,7 +18,7 @@ extern game * Game;
 //extern int levels=1;
 ball::ball(const QString& imagePath, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(QPixmap(imagePath).scaled(35, 35), parent){
     moveX=0;
-    moveY=-7;
+    moveY=-7;//it decreases by 7
 
     QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
@@ -32,7 +32,9 @@ void ball::blockcollision(){
     for (size_t i = 0, n = colliding_items.size(); i < n; ++i) {
         blocks* block = dynamic_cast<blocks*>(colliding_items[i]);
         if (block) {
+            Levels->s->increase();
             qDebug() << "Ball collided with block";
+            qDebug()<<"position if block"<<pos().y();
             // Remove block from scene if it exists in the scene
             if (block->scene()) {
                 qDebug() << "block removed from scene";
@@ -48,11 +50,13 @@ void ball::blockcollision(){
         }
     }
 }
+
 void ball::playercollision(){
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (size_t i = 0, n = colliding_items.size(); i < n; ++i) {
         player* Player = dynamic_cast<player*>(colliding_items[i]);
         if (Player) {
+            qDebug()<<"position if player"<<pos().y();
             moveY = -moveY;
             moveX=(moveX+getcenter()-Player->getMidPoint())/10;
             return;
@@ -63,8 +67,12 @@ void ball::move(){
     double height = Levels->height();
     blockcollision();
     playercollision();
-    // Handle out of bounds and continue movement
     if (pos().y()>height){
+        qDebug()<<"height is "<<pos().y();
+    }
+    // Handle out of bounds and continue movement
+    if (pos().y()>height){///change to height
+        qDebug()<<pos().y();
         qDebug() << "health decrease is called " ;
         Levels->h->decrease();//recheck when health decreases
         moveY = -moveY;
@@ -86,16 +94,18 @@ void ball::move(){
             QPushButton *nextLevelButton = new QPushButton("Next Level");
             connect(nextLevelButton, &QPushButton::clicked, this, game::nextlevel);//next level function
             msgbox.addButton(nextLevelButton, QMessageBox::AcceptRole);
-
             msgbox.exec();
+            delete this;
         }
         else{
             QMessageBox msgboxx;
+            int playerscore=Levels->s->getscore();
+            QString message="Congratulations! You Have Completed All Levels. Your score is "+ QString::number(playerscore);
             msgboxx.setWindowTitle("You Have Won");
-            msgboxx.setText("Cngratulations! You Have Completed All Levels.");
-            QPushButton *nextLevelButton = new QPushButton("Exit");
-            connect(nextLevelButton, &QPushButton::clicked, this, game::exitgame);
-            msgboxx.addButton(nextLevelButton, QMessageBox::AcceptRole);
+            msgboxx.setText(message);
+            QPushButton *exitbuttonn = new QPushButton("Exit Game");
+            connect(exitbuttonn, &QPushButton::clicked, this, game::exitgame);
+            msgboxx.addButton(exitbuttonn, QMessageBox::RejectRole);
 
             msgboxx.exec();
         }
