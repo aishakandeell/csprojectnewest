@@ -24,24 +24,38 @@ void game::level1(){
     Levels = new levels(); // Initialize Levels
     Levels->show();
     Levels->startlevel();
-
-    Levels->h->healthreset();
 }
 void game::level2(){
     currLevel=2;
-    Levels->h->healthreset();
+    if (Levels)
+        delete Levels;
+    Levels = new levels(); // Initialize Levels
+    Levels->show();
+    Levels->startlevel();
 }
 void game::level3(){
     currLevel=3;
-    Levels->h->healthreset();
+    if (Levels)
+        delete Levels;
+    Levels = new levels(); // Initialize Levels
+    Levels->show();
+    Levels->startlevel();
 }
 void game::level4(){
     currLevel=4;
-    Levels->h->healthreset();
+    if (Levels)
+        delete Levels;
+    Levels = new levels(); // Initialize Levels
+    Levels->show();
+    Levels->startlevel();
 }
 void game::level5(){
     currLevel=5;
-    Levels->h->healthreset();
+    if (Levels)
+        delete Levels;
+    Levels = new levels(); // Initialize Levels
+    Levels->show();
+    Levels->startlevel();
 }
 void game::exitgame(){
     if (Levels) {

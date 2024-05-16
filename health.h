@@ -10,7 +10,6 @@ public:
     void decrease();
     int gethealth();
     void sethealth(int n);
-    void healthreset();
     int healthc;
 private:
     //int healthc;

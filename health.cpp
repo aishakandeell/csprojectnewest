@@ -18,12 +18,7 @@ health::health(QGraphicsItem *parent): QGraphicsTextItem(parent){
     setFont(QFont("times",14));
 
 }
-void health::healthreset(){
-    //healthc=3;
-    ball *Ball = new ball(":/Ball.png");
-    Ball->setPos(300, 500);
-    Levels->scene->addItem(Ball);
-}
+
 void health::decrease() {
     qDebug() << "health decrease is called from funcdtion " ;
     qDebug() << "Current health: " << healthc;
