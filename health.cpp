@@ -6,8 +6,10 @@
 #include "ball.h"
 #include "score.h"
 #include "levels.h"
+#include "abilities.h"
 extern game * Game;
 extern levels*Levels;
+extern bool ownshealth;
 //extern int healthc=3;
 health::health(QGraphicsItem *parent): QGraphicsTextItem(parent){
 
@@ -70,4 +72,5 @@ int health::gethealth(){
 void health::sethealth(){
     healthc=healthc+2;
     setPlainText("Health: " + QString::number(healthc));
+    ownshealth = false;
 }

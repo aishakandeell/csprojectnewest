@@ -3,7 +3,7 @@
 
 #include "qevent.h"
 extern bool own3x;
-extern bool ownslow;
+extern bool ownshealth;
 extern bool activate3x;
 extern bool activateslow;
 

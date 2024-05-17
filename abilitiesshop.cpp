@@ -8,8 +8,8 @@
 extern levels* Levels;
 extern game* Game;
 extern int scorec;
-extern bool own3x;
-extern bool ownslow;
+extern bool owns3x;
+extern bool ownshealth;
 
 abilitiesShop::abilitiesShop(QWidget *parent)
     : QDialog(parent)
@@ -33,8 +33,8 @@ void abilitiesShop::on_nextLev_clicked()
 void abilitiesShop::on_buy3x_clicked()
 {
     if(scorec >= 5){
-        own3x = true;
-
+        owns3x = true;
+        scorec=scorec-5;
         QMessageBox msgbox;
         QString messagee="3x Ball Ability Purchased";
         msgbox.setWindowTitle("Purchased Ability");
@@ -53,7 +53,12 @@ void abilitiesShop::on_buy3x_clicked()
         msgbox.setText(messagee);
 
         QPushButton *nextlevelbutton = new QPushButton("Go To Next Level");
-        connect(nextlevelbutton, &QPushButton::clicked, this, game::nextlevel);//level1 function
+        //connect(nextlevelbutton, &QPushButton::clicked, this, game::nextlevel);//level1 function
+        connect(nextlevelbutton, &QPushButton::clicked, [&msgbox, this]() {
+            //this->hide();
+            game::nextlevel();
+            delete this;
+        });
         msgbox.addButton(nextlevelbutton, QMessageBox::AcceptRole);
 
         msgbox.exec();
@@ -64,9 +69,9 @@ void abilitiesShop::on_buyhealth_clicked()
 {
     if(scorec >= 3){
 
-        ownslow = true;
+        ownshealth = true;
         scorec=scorec-3;
-        qDebug()<<"ownslow"<<ownslow;
+        qDebug()<<"ownshealth"<<ownshealth;
         QMessageBox msgbox;
         QString messagee="Health Purchased";
         msgbox.setWindowTitle("Purchased Ability");

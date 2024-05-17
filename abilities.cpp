@@ -3,8 +3,8 @@
 #include "qgraphicsitem.h"
 #include "levels.h"
 
-bool own3x = false;
-bool ownslow = false;
+bool owns3x = false;
+bool ownshealth = false;
 extern levels* Levels;
 
 bool activate3x = false;
@@ -17,10 +17,10 @@ void abilities::keyPressEvent(QKeyEvent *event)
 {
     if(event->key()== Qt::Key_Space )
     {
-        if(own3x)
+        if(owns3x)
         {
             activate3x = true;
-            own3x = false;
+            owns3x = false;
             QGraphicsTextItem* activated=new QGraphicsTextItem();
             activated->setPlainText("3x Balls Activated");
             activated->setDefaultTextColor(Qt::white);
@@ -32,10 +32,10 @@ void abilities::keyPressEvent(QKeyEvent *event)
 
     if(event->key()== Qt::Key_E)
     {
-        if(ownslow)
+        if(ownshealth)
         {
             activateslow = true;
-            ownslow = false;
+            ownshealth = false;
             QGraphicsTextItem* activated=new QGraphicsTextItem();
             activated->setPlainText("Slow Time Activated");
             activated->setDefaultTextColor(Qt::white);

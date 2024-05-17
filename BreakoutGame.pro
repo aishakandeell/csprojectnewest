@@ -12,6 +12,7 @@ SOURCES += \
     abilities.cpp \
     abilitiesshop.cpp \
     ball.cpp \
+    ballsx3.cpp \
     blocks.cpp \
     game.cpp \
     health.cpp \
@@ -25,6 +26,7 @@ HEADERS += \
     abilities.h \
     abilitiesshop.h \
     ball.h \
+    ballsx3.h \
     blocks.h \
     game.h \
     health.h \

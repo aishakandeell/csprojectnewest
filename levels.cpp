@@ -11,11 +11,13 @@
 #include "game.h"
 #include "ball.h"
 #include "abilitiesshop.h"
+#include "ballsx3.h"
 #include "abilities.h"
-extern bool ownslow;
+extern bool owns3x;
+extern bool ownhealth;
 levels::levels(QWidget *parent) : QGraphicsView(parent) {
     scene = new QGraphicsScene(0, 0, 65*3*currLevel, 35*2*currLevel+500); // 600 vertical
-    //setBackgroundBrush(QBrush(QImage(":/Background.jpg").scaled(65*3*currLevel,35*2*currLevel+400)));
+    //setBackgroundBrush(QBrush(QImage(":/Background.png").scaled(65*3*currLevel,35*2*currLevel+400)));
     setBackgroundBrush(QBrush(Qt::black));
     setScene(scene);
 
@@ -46,12 +48,24 @@ void levels:: startlevel(){
     s->setPos(scene->width()-80, scene->height()-80);
     scene->addItem(s);
     h=new health();
-    qDebug()<<"ownslow"<<ownslow;
-    if(ownslow==true){
+    qDebug()<<"ownhealth"<<ownshealth;
+    if(ownshealth==true){
         h->sethealth();
     }
     h->setPos(scene->width()-80, scene->height()-100);
     scene->addItem(h);
+    qDebug()<<"owns3x"<<owns3x;
+    if(owns3x==true){
+        ballsx3* b1 = new ballsx3(":/Ball.png");
+        ballsx3* b2 = new ballsx3(":/Ball.png");
+        ballsx3* b3 = new ballsx3(":/Ball.png");
+        b1->setPos((scene->width()/2),scene->height()-80);
+        b2->setPos((scene->width()/2),scene->height()-60);
+        b3->setPos((scene->width()/2),scene->height()-40);
+        scene->addItem(b1);
+        scene->addItem(b2);
+        scene->addItem(b3);
+    }
     QGraphicsTextItem *levelll = new QGraphicsTextItem();
     levelll->setPlainText("Level: " + QString::number(currLevel));
     levelll->setDefaultTextColor(Qt::white);
