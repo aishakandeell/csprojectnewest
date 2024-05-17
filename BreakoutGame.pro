@@ -9,6 +9,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    abilities.cpp \
+    abilitiesshop.cpp \
     ball.cpp \
     blocks.cpp \
     game.cpp \
@@ -20,6 +22,8 @@ SOURCES += \
     score.cpp
 
 HEADERS += \
+    abilities.h \
+    abilitiesshop.h \
     ball.h \
     blocks.h \
     game.h \
@@ -30,6 +34,7 @@ HEADERS += \
     score.h
 
 FORMS += \
+    abilitiesshop.ui \
     maimmenu.ui
 
 # Default rules for deployment.

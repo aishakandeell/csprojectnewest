@@ -1,8 +1,10 @@
 #include "game.h"
+#include "abilitiesshop.h"
 #include "levels.h"
 #include "blocks.h"
 #include "ball.h"
 #include "health.h"
+
 extern int currLevel=0;
 extern levels*Levels;
 game::game(){}
@@ -64,6 +66,15 @@ void game::exitgame(){
         Levels = nullptr;
     }
 }
+
+void game::ability(){
+    if(Levels) {
+        delete Levels;
+    }
+    abilitiesShop* aS = new abilitiesShop();
+    aS->show();
+}
+
 bool game::allblocksremoved(){
     QList<QGraphicsItem *> items = Levels->scene->items();
     for (int i = 0; i < items.size(); ++i) {

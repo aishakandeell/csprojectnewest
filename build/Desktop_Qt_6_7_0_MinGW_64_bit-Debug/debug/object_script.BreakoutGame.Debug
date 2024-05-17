@@ -1,0 +1,14 @@
+debug/abilitiesshop.o
+debug/ball.o
+debug/blocks.o
+debug/game.o
+debug/health.o
+debug/levels.o
+debug/main.o
+debug/maimmenu.o
+debug/player.o
+debug/score.o
+debug/qrc_resource.o
+debug/moc_abilitiesshop.o
+debug/moc_ball.o
+debug/moc_maimmenu.o

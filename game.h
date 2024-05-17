@@ -14,6 +14,7 @@ public:
     static void level3();
     static void level4();
     static void level5();
+    static void ability();
 };
 
 #endif // GAME_H

@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/new/prefix1">
-        <file>Ball.png</file>
-        <file>Breakout Game Logo.png</file>
-    </qresource>
-</RCC>

@@ -12,7 +12,7 @@
 #include "ball.h"
 levels::levels(QWidget *parent) : QGraphicsView(parent) {
     scene = new QGraphicsScene(0, 0, 67*3*currLevel, 600); // 600 vertical
-    scene->setBackgroundBrush(QBrush(Qt::black));
+    setBackgroundBrush(QBrush(QImage(":/Background.jpg").scaled(67*3*currLevel,600)));
     setScene(scene);
 
     // Disable scroll bars
@@ -33,27 +33,29 @@ void levels:: startlevel(){
     ball *b= new ball(":/Ball.png");
     b->setPos((67*3*currLevel)/2,500);
     scene->addItem(b);
-    player *p= new player();
+    player *p= new player(":/Player.png");
     p->setPos((((67*3*currLevel)/2)-100)/2,575);
     scene->addItem(p);
     p->setFlag(QGraphicsItem::ItemIsFocusable);
     p->setFocus();
-    h=new health();
-    h->setPos(scene->width()-90, scene->height()-120);
-    scene->addItem(h);
     s=new score();
+    s->setPos(scene->width()-70, scene->height()-80);
+    scene->addItem(s);
+    h=new health();
+    h->setPos(scene->width()-70, scene->height()-100);
+    scene->addItem(h);
     QGraphicsTextItem *levelll = new QGraphicsTextItem();
     levelll->setPlainText("Level: " + QString::number(currLevel));
     levelll->setDefaultTextColor(Qt::white);
-    levelll->setFont(QFont("times", 14));
-    levelll->setPos(scene->width()-90, scene->height()-70);
+    levelll->setFont(QFont("System", 12));
+    levelll->setPos(scene->width()-70, scene->height()-120);
     scene->addItem(levelll);
 
     createbl();
 }
 
 void levels::createbl(){
-    QColor colors[] = {Qt::red, Qt::green, Qt::yellow, Qt::blue, Qt::cyan, Qt::magenta};
+    QColor colors[] = {QColorConstants::Svg::darkviolet, QColorConstants::Svg::slateblue, QColorConstants::Svg::fuchsia, QColorConstants::Svg::mediumslateblue, QColorConstants::Svg::midnightblue, QColorConstants::Svg::violet};
     for(int i=0;i<(currLevel*3);i++){//change according to level
         for(int j=0;j<(currLevel*2);j++){
             QColor color = colors[(i + j) % 6];

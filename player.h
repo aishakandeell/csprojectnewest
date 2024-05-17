@@ -4,10 +4,10 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsSceneMouseEvent>
 
-class player: public QGraphicsRectItem{
+class player: public QObject, public QGraphicsPixmapItem{
 public:
 
-    player(QGraphicsItem* parent=NULL);
+    player(const QString& imagePath, QGraphicsItem* parent=NULL);
     double getMidPoint();
     void keyPressEvent(QKeyEvent * event);
 };

@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>Ball.png</file>
         <file>Breakout Game Logo.png</file>
+        <file>Background.jpg</file>
+        <file>Player.png</file>
     </qresource>
 </RCC>

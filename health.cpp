@@ -15,7 +15,7 @@ health::health(QGraphicsItem *parent): QGraphicsTextItem(parent){
     //display the text
     setPlainText("Health: " + QString::number(healthc));
     setDefaultTextColor(Qt::white);
-    setFont(QFont("times",14));
+    setFont(QFont("System",12));
 
 }
 

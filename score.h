@@ -1,12 +1,14 @@
 #ifndef SCORE_H
 #define SCORE_H
-extern int scoree;
-class score
+#include "qgraphicsitem.h"
+extern int scorec;
+class score : public QGraphicsTextItem
 {
 public:
-    score();
+    score(QGraphicsItem *parent = nullptr);
     void increase();
     int getscore();
+    void setscore(int n);
 };
 
 #endif // SCORE_H

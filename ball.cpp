@@ -94,6 +94,9 @@ void ball::move(){
             QPushButton *nextLevelButton = new QPushButton("Next Level");
             connect(nextLevelButton, &QPushButton::clicked, this, game::nextlevel);//next level function
             msgbox.addButton(nextLevelButton, QMessageBox::AcceptRole);
+            QPushButton *abilityShop = new QPushButton("Buy Abilities");
+            connect(abilityShop, &QPushButton::clicked, this, game::ability);//next level function
+            msgbox.addButton(abilityShop, QMessageBox::AcceptRole);
             msgbox.exec();
             delete this;
         }
