@@ -10,6 +10,7 @@ extern levels* Levels;
 bool activate3x = false;
 bool activateslow = false;
 
+
 abilities::abilities(): QObject() {}
 
 void abilities::keyPressEvent(QKeyEvent *event)
@@ -20,10 +21,11 @@ void abilities::keyPressEvent(QKeyEvent *event)
         {
             activate3x = true;
             own3x = false;
-            QGraphicsTextItem* activated("3x Balls Activated");
+            QGraphicsTextItem* activated=new QGraphicsTextItem();
+            activated->setPlainText("3x Balls Activated");
             activated->setDefaultTextColor(Qt::white);
             activated->setFont(QFont("System",12));
-            activated->setPos(Levels->scene->width()-70, scene->height()-100);
+            activated->setPos(Levels->scene->width()-70, Levels->scene->height()-100);
             Levels->scene->addItem(activated);
         }
     }
@@ -34,11 +36,13 @@ void abilities::keyPressEvent(QKeyEvent *event)
         {
             activateslow = true;
             ownslow = false;
-            QGraphicsTextItem* activated("Slow Time Activated");
+            QGraphicsTextItem* activated=new QGraphicsTextItem();
+            activated->setPlainText("Slow Time Activated");
             activated->setDefaultTextColor(Qt::white);
             activated->setFont(QFont("System",12));
-            activated->setPos(Levels->scene->width()-70, scene->height()-100);
+            activated->setPos(Levels->scene->width()-70, Levels->scene->height()-100);
             Levels->scene->addItem(activated);
+
         }
     }
 

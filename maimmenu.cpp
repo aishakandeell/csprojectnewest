@@ -76,3 +76,12 @@ void maimmenu::on_level3button_2_clicked()
     Game->level5();
 }
 
+
+void maimmenu::on_level5button_clicked()
+{
+    this->~maimmenu();
+    Game=new game();
+    Levels = new levels();
+    Game->level5();
+}
+

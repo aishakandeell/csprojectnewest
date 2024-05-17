@@ -20,7 +20,7 @@ private slots:
 
     void on_buy3x_clicked();
 
-    void on_buyfreeze_clicked();
+    void on_buyhealth_clicked();
 
 private:
     Ui::abilitiesShop *ui;

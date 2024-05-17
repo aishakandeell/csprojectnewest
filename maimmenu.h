@@ -34,6 +34,8 @@ private slots:
 
     void on_level3button_2_clicked();
 
+    void on_level5button_clicked();
+
 private:
     Ui::maimmenu *ui;
 };

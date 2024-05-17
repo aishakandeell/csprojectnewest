@@ -67,6 +67,7 @@ void health::decrease() {
 int health::gethealth(){
     return healthc;
 }
-void health::sethealth(int n){
-    healthc=n;
+void health::sethealth(){
+    healthc=healthc+2;
+    setPlainText("Health: " + QString::number(healthc));
 }

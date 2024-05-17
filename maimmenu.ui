@@ -73,10 +73,10 @@ background-color : red;
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>630</x>
-      <y>450</y>
-      <width>84</width>
-      <height>114</height>
+      <x>620</x>
+      <y>410</y>
+      <width>89</width>
+      <height>132</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -145,9 +145,26 @@ background-color : red;
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="level5button">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>550</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(85, 170, 255);</string>
+    </property>
+    <property name="text">
+     <string>Level 5</string>
+    </property>
+   </widget>
    <zorder>layoutWidget</zorder>
    <zorder>label</zorder>
    <zorder>layoutWidget</zorder>
+   <zorder>level5button</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -155,7 +172,7 @@ background-color : red;
      <x>0</x>
      <y>0</y>
      <width>733</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuBreakout">

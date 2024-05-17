@@ -4,6 +4,7 @@
 #include "blocks.h"
 #include "ball.h"
 #include "health.h"
+#include "abilitiesshop.h"
 
 extern int currLevel=0;
 extern levels*Levels;
@@ -18,6 +19,7 @@ void game::nextlevel(){
     Levels = new levels(); // Initialize Levels
     Levels->show();
     Levels->startlevel();
+
 }
 void game::level1(){
     currLevel=1;
@@ -68,9 +70,7 @@ void game::exitgame(){
 }
 
 void game::ability(){
-    if(Levels) {
-        delete Levels;
-    }
+
     abilitiesShop* aS = new abilitiesShop();
     aS->show();
 }

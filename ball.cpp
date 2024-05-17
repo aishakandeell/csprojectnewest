@@ -16,13 +16,13 @@
 extern levels*Levels;
 extern game * Game;
 //extern int levels=1;
-ball::ball(const QString& imagePath, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(QPixmap(imagePath).scaled(35, 35), parent){
+ball::ball(const QString& imagePath, QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(QPixmap(imagePath).scaled(40, 40), parent){
     moveX=0;
     moveY=-7;//it decreases by 7
 
     QTimer * timer = new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-    timer->start((5-currLevel)*10);// change to variable according to level
+    timer->start((6-currLevel)*7);// change to variable according to level
 }
 double ball::getcenter(){
     return x() + pixmap().width() / 2.0;
@@ -81,7 +81,7 @@ void ball::move(){
     if (pos().y() <= 0) {
         moveY = -moveY; // Reverse vertical direction
     }
-    if (pos().x() <= 0 || pos().x() >= Levels->width()) {
+    if (pos().x() <= 0 || getcenter()+20 >= Levels->width()) {
         moveX = -moveX; // Reverse horizontal direction
     }
     if (Game->allblocksremoved()) {

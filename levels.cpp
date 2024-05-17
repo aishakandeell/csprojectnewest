@@ -10,9 +10,13 @@
 #include <QFont>
 #include "game.h"
 #include "ball.h"
+#include "abilitiesshop.h"
+#include "abilities.h"
+extern bool ownslow;
 levels::levels(QWidget *parent) : QGraphicsView(parent) {
-    scene = new QGraphicsScene(0, 0, 67*3*currLevel, 600); // 600 vertical
-    setBackgroundBrush(QBrush(QImage(":/Background.jpg").scaled(67*3*currLevel,600)));
+    scene = new QGraphicsScene(0, 0, 65*3*currLevel, 35*2*currLevel+500); // 600 vertical
+    //setBackgroundBrush(QBrush(QImage(":/Background.jpg").scaled(65*3*currLevel,35*2*currLevel+400)));
+    setBackgroundBrush(QBrush(Qt::black));
     setScene(scene);
 
     // Disable scroll bars
@@ -29,26 +33,30 @@ void levels::hidecurrentscene() {
 void levels:: startlevel(){
     scene->clear();
 
-    scene->setSceneRect(0, 0, 67 * 3 * currLevel, 600);
+    scene->setSceneRect(0, 0, scene->width(), scene->height());
     ball *b= new ball(":/Ball.png");
-    b->setPos((67*3*currLevel)/2,500);
+    b->setPos((scene->width()/2),scene->height()-100);
     scene->addItem(b);
     player *p= new player(":/Player.png");
-    p->setPos((((67*3*currLevel)/2)-100)/2,575);
+    p->setPos((((scene->width())/2)-100)/2,scene->height()-25);
     scene->addItem(p);
     p->setFlag(QGraphicsItem::ItemIsFocusable);
     p->setFocus();
     s=new score();
-    s->setPos(scene->width()-70, scene->height()-80);
+    s->setPos(scene->width()-80, scene->height()-80);
     scene->addItem(s);
     h=new health();
-    h->setPos(scene->width()-70, scene->height()-100);
+    qDebug()<<"ownslow"<<ownslow;
+    if(ownslow==true){
+        h->sethealth();
+    }
+    h->setPos(scene->width()-80, scene->height()-100);
     scene->addItem(h);
     QGraphicsTextItem *levelll = new QGraphicsTextItem();
     levelll->setPlainText("Level: " + QString::number(currLevel));
     levelll->setDefaultTextColor(Qt::white);
     levelll->setFont(QFont("System", 12));
-    levelll->setPos(scene->width()-70, scene->height()-120);
+    levelll->setPos(scene->width()-80, scene->height()-120);
     scene->addItem(levelll);
 
     createbl();
